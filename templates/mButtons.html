@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Easy
+{% endblock %}
+
+{% block main %}
+    <form action="/mButtons" method="post">
+        <table class="table-bordered center bottom-two">
+            {% for i in range(9) %}
+                <tr>
+                    {% for j in range(9) %}
+                        <td><div class="content">
+                            {% if sudoku[i][j] == 0 %}
+                                {% if i == row and j == col %}
+                                    <button type="button" class="highlightButton" name="box" id="box">{{ i }}{{ j }}</button>
+                                {% else %}
+                                    <button type="button" class="invisButton" name="box" id="box">{{ i }}{{ j }}</button>
+                                {% endif %}
+                            {% else %}
+                                {{ sudoku[i][j] }}
+                            {% endif %}
+                        </div></td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table >
+        <div>
+            {% for i in range(1,10) %}
+                <button type="sumbit" class="btn btn-secondary btn-lg" name="entry" id="entry" value="{{ i }}">{{ i }}</button>
+            {% endfor %}
+        </div>
+    </form>
+{% endblock %}

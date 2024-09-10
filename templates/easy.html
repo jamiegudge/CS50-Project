@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Easy
+{% endblock %}
+
+{% block main %}
+    <form action="/easy" method="post">
+        <table class="table-bordered center bottom-two">
+            {% for row in range(9) %}
+                <tr>
+                    {% for col in range(9) %}
+                        <td><div class="content">
+                            {% if sudoku[row][col] == 0 %}
+                                <button type="submit" class="invisButton" name="box" id="box" value="{{ row }}{{ col }}">{{ row }}{{ col }}</button>
+                            {% else %}
+                                {{ sudoku[row][col] }}
+                            {% endif %}
+                        </div></td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        </form>
+        <div>
+            {% if error != 0 %}
+                {{ error }}
+            {% endif %}
+        </div>
+{% endblock %}
